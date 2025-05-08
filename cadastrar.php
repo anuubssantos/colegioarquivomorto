@@ -45,10 +45,18 @@
 
    <div class="inicio">
       <form class="formulario" method="post" action="./scripts/cadastroProntuario.php">
-         <h1 class="h1text">Cadastrar novo Pronturário</h1>
+         <div class="grupoText">
+               <md-linear-progress class="stepbystep" value="0.20"></md-linear-progress>
+               
+            </div>
+         <h1 class="h1text">Cadastrar novo pronturário</h1>
+         <h5 class="">Identificação</h5>
          <div class="cadastrar">
+         
             <div class="grupoText">
                <div class="textField">
+                  
+
                   <md-outlined-text-field label="Caixa" name="codCaixa"  class="apoiobusca"
                      type="text"></md-outlined-text-field>
                   <md-outlined-text-field label="Pronturário" name="numProntuario"  class="apoiobusca"
@@ -135,13 +143,13 @@
                  
                   <?php
                   include "./scripts/dbConnection.php";
-                  $select = "SELECT idTipoFormacao, tipoFormacao FROM cccpv_tipoformacao ORDER BY idTipoFormacao";
+                  $select = "SELECT idStatusMatricula, statusMatricula FROM cccpv_statusmatricula ORDER BY statusMatricula";
                   $resultado = mysqli_query($conn, $select) or die("Erro no sistema.");
                   echo "<md-outlined-select name='statusMatricula' id='statusMatricula' class='apoiobusca' required>";
                   echo "<md-select-option label='Status da Matricula' selected> 
                      <div slot='headline'>Status da Matricula</div></md-select-option>";
                   while ($linha = mysqli_fetch_assoc($resultado)) {
-                     echo " <md-select-option value='" . $linha["idTipoFormacao"] . "'>" 
+                     echo " <md-select-option value='" . $linha["idStatusMatricula"] . "'>" 
                      . $linha["tipoFormacao"] . "</md-select-option>";
                   }
                   echo "</md-outlined-select>";
